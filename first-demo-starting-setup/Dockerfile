@@ -1,10 +1,10 @@
-FROM node:14
+FROM node:20-slim
 
 WORKDIR /app
 
 COPY package.json .
 
-RUN npm install
+RUN apt-get update && apt-get upgrade -y && npm install && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
